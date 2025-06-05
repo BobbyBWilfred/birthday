@@ -2,7 +2,7 @@
   "name": "birthday-login-app",
   "version": "1.0.0",
   "description": "A simple birthday website with login and MongoDB logging",
-  "main": "servers.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
