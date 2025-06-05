@@ -2,9 +2,9 @@
   "name": "birthday-login-app",
   "version": "1.0.0",
   "description": "A simple birthday website with login and MongoDB logging",
-  "main": "server.js",
+  "main": "servers.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node servers.js"
   },
   "author": "Bobby B Wilfred",
   "license": "MIT",
